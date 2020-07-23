@@ -1,5 +1,6 @@
 var express = require('express');
 var exphbs  = require('express-handlebars');
+var bodyParser = require('body-parser')
 
 // SDK de Mercado Pago
 var mercadopago = require('mercadopago');
@@ -14,6 +15,10 @@ var app = express();
  
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 app.get('/', function (req, res) {
     res.render('home');
